@@ -159,6 +159,7 @@ abstract class Model implements Arrayable, ArrayAccess, Jsonable, JsonSerializab
 
     /**
      * Create a new Eloquent model instance.
+     * 构造一个查询
      *
      * @param  array  $attributes
      * @return void
@@ -176,6 +177,7 @@ abstract class Model implements Arrayable, ArrayAccess, Jsonable, JsonSerializab
 
     /**
      * Check if the model needs to be booted and if so, do it.
+     * 标记模型被启动，并且触发模型启动的前置与后置事件
      *
      * @return void
      */
@@ -248,6 +250,7 @@ abstract class Model implements Arrayable, ArrayAccess, Jsonable, JsonSerializab
 
     /**
      * Initialize any initializable traits on the model.
+     * 初始化模型上的相关资源
      *
      * @return void
      */
@@ -334,6 +337,7 @@ abstract class Model implements Arrayable, ArrayAccess, Jsonable, JsonSerializab
 
     /**
      * Fill the model with an array of attributes.
+     * 初始化模型的属性
      *
      * @param  array  $attributes
      * @return $this
@@ -404,6 +408,7 @@ abstract class Model implements Arrayable, ArrayAccess, Jsonable, JsonSerializab
 
     /**
      * Create a new instance of the given model.
+     * 获取模型的实列（空对象）
      *
      * @param  array  $attributes
      * @param  bool  $exists
@@ -431,7 +436,7 @@ abstract class Model implements Arrayable, ArrayAccess, Jsonable, JsonSerializab
 
     /**
      * Create a new model instance that is existing.
-     *
+     * 获取模型的实列( 装载对象 具体的实列)
      * @param  array  $attributes
      * @param  string|null  $connection
      * @return static
@@ -1022,6 +1027,7 @@ abstract class Model implements Arrayable, ArrayAccess, Jsonable, JsonSerializab
 
     /**
      * Get a new query builder that doesn't have any global scopes or eager loading.
+     * 添加对关系模型的加载
      *
      * @return \Illuminate\Database\Eloquent\Builder|static
      */
@@ -1095,6 +1101,7 @@ abstract class Model implements Arrayable, ArrayAccess, Jsonable, JsonSerializab
 
     /**
      * Create a new Eloquent query builder for the model.
+     * 获取查询构造器
      *
      * @param  \Illuminate\Database\Query\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder|static
@@ -1730,6 +1737,7 @@ abstract class Model implements Arrayable, ArrayAccess, Jsonable, JsonSerializab
 
     /**
      * Handle dynamic static method calls into the model.
+     * User::find(1)/User::where()的静态调用方法，本身不在类中有定义，而是转发到__callStatic魔术方法：
      *
      * @param  string  $method
      * @param  array  $parameters

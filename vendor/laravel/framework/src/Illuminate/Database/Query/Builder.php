@@ -211,9 +211,9 @@ class Builder
                                 Grammar $grammar = null,
                                 Processor $processor = null)
     {
-        $this->connection = $connection;
-        $this->grammar = $grammar ?: $connection->getQueryGrammar();
-        $this->processor = $processor ?: $connection->getPostProcessor();
+        $this->connection = $connection;//数据库连接对象
+        $this->grammar = $grammar ?: $connection->getQueryGrammar();//SQL语法解析对象
+        $this->processor = $processor ?: $connection->getPostProcessor();//查询结果数据返回對象
     }
 
     /**

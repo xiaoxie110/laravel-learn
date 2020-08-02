@@ -34,6 +34,7 @@ class DatabaseServiceProvider extends ServiceProvider
 
     /**
      * Register the service provider.
+     * 注册数据库的服务提供者
      *
      * @return void
      */
@@ -41,11 +42,11 @@ class DatabaseServiceProvider extends ServiceProvider
     {
         Model::clearBootedModels();
 
-        $this->registerConnectionServices();
+        $this->registerConnectionServices();//DB
 
-        $this->registerEloquentFactory();
+        $this->registerEloquentFactory();//数据填充功能中的数据工厂，用于生成模拟数据
 
-        $this->registerQueueableEntityResolver();
+        $this->registerQueueableEntityResolver();//注册了队列的数据库实现
     }
 
     /**
