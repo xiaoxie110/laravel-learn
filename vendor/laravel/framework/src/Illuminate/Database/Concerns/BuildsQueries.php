@@ -22,6 +22,7 @@ trait BuildsQueries
         $page = 1;
 
         do {
+            //我们将针对给定的页面执行查询并获取结果,如果没有结果中断返回，有结果则返回当前块，默认排序
             // We'll execute the query for the given page and get the results. If there are
             // no results we can just break and return from here. When there are results
             // we will call the callback with the current chunk of these results here.
@@ -68,6 +69,7 @@ trait BuildsQueries
 
     /**
      * Chunk the results of a query by comparing IDs.
+     * 根据指定字段排序获取的查询分块结果
      *
      * @param  int  $count
      * @param  callable  $callback
@@ -77,7 +79,7 @@ trait BuildsQueries
      */
     public function chunkById($count, callable $callback, $column = null, $alias = null)
     {
-        $column = $column ?? $this->defaultKeyName();
+        $column = $column ?? $this->defaultKeyName();//如果没有传指定字段，则默认为当前表主键
 
         $alias = $alias ?? $column;
 
@@ -89,6 +91,7 @@ trait BuildsQueries
             // We'll execute the query for the given page and get the results. If there are
             // no results we can just break and return from here. When there are results
             // we will call the callback with the current chunk of these results here.
+            //获取指定ID后的分页数据
             $results = $clone->forPageAfterId($count, $lastId, $column)->get();
 
             $countResults = $results->count();

@@ -425,6 +425,7 @@ class Builder
 
     /**
      * Get the first record matching the attributes or create it.
+     * 获取满足查询条件的第一条记录，否则创建
      *
      * @param  array  $attributes
      * @param  array  $values

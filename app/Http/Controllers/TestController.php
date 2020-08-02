@@ -14,7 +14,10 @@ class TestController extends Controller
 //        dump($request->url());
 //        dump($request->fullUrl());
 //        dump($request->getBaseUrl());
-        dump(User::where('id',1)->first());
-        dump('Hello World');
+        User::chunkById(2, function($users){
+            foreach($users as $user){
+                dump($user->name.'****'.$user->email);
+            }
+        }, 'name', 'email');
     }
 }

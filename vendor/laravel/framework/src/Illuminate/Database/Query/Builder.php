@@ -1991,7 +1991,7 @@ class Builder
 
     /**
      * Set the limit and offset for a given page.
-     *
+     * 设置查询的开始值及指定页数
      * @param  int  $page
      * @param  int  $perPage
      * @return $this
@@ -2023,6 +2023,7 @@ class Builder
 
     /**
      * Constrain the query to the next "page" of results after a given ID.
+     * 将查询限制为给定ID后的结果的下一个分页
      *
      * @param  int  $perPage
      * @param  int|null  $lastId
@@ -2031,13 +2032,13 @@ class Builder
      */
     public function forPageAfterId($perPage = 15, $lastId = 0, $column = 'id')
     {
-        $this->orders = $this->removeExistingOrdersFor($column);
+        $this->orders = $this->removeExistingOrdersFor($column);//移除给定字段的排序
 
         if (! is_null($lastId)) {
-            $this->where($column, '>', $lastId);
+            $this->where($column, '>', $lastId);//上次查询最后结果ID
         }
 
-        return $this->orderBy($column, 'asc')
+        return $this->orderBy($column, 'asc')//默认升序排列
                     ->limit($perPage);
     }
 
@@ -2062,6 +2063,7 @@ class Builder
 
     /**
      * Get an array with all orders with a given column removed.
+     * 获取指定字段排序外的所有排序
      *
      * @param  string  $column
      * @return array
